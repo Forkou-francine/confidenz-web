@@ -8,9 +8,9 @@ function getControllerContent(cname, api = true) {
     let methods = ''
     if (api) methods = getMehode(cname)
     return ` import { HttpResponse } from '../helpers/helper.js';
-        import { ${cname} } from '../models/index.js';
+import { ${cname} } from '../models/index.js';
         
-        export default class ${cname} {
+export default class ${cname} {
             constructor() {}
         
             ${methods}

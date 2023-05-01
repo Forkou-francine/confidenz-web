@@ -1,0 +1,89 @@
+    <!-- partial:partials/_settings-panel.html -->
+    <div class="theme-setting-wrapper">
+      <div id="settings-trigger"><i class="ti-settings"></i></div>
+      <div id="theme-settings" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <p class="settings-heading">SIDEBAR SKINS</p>
+        <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+        <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+        <p class="settings-heading mt-2">HEADER SKINS</p>
+        <div class="color-tiles mx-0 px-4">
+          <div class="tiles success"></div>
+          <div class="tiles warning"></div>
+          <div class="tiles danger"></div>
+          <div class="tiles info"></div>
+          <div class="tiles dark"></div>
+          <div class="tiles default"></div>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/home">
+            <i class="bi bi-arrow-left-circle-fill menu-icon "></i>
+            <span class="menu-title">Accueil</span>
+          </a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/profile">
+            <i class="bi bi-people-fill menu-icon "></i>
+            <span class="menu-title">Mon Profil</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#doc" aria-expanded="false" aria-controls="ui-basic">
+            <i class="bi bi-filetype-xls menu-icon"></i>
+            <span class="menu-title">Documents</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="doc">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/documents">Upload </a></li>
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#CertModal">Certificats scolarité</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  data-toggle="modal" data-target="#bilanAbsModal" href="#" aria-expanded="false" aria-controls="ui-basic">
+            <i class="bi bi-people-fill menu-icon"></i>
+            <span class="menu-title">Bilan d'absence</span>
+          </a>
+        </li>
+
+    
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#etudiant" aria-expanded="false" aria-controls="ui-basic">
+            <i class="bi bi-people-fill menu-icon"></i>
+            <span class="menu-title">Etudiants</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="etudiant">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#carteModal">Carte d'étudiant</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#classeModal">Liste des classes</a></li>
+             
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#pv" aria-expanded="false" aria-controls="ui-basic">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">PV & Relevé</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="pv">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#pvModal">PV</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#pvSynModal"> Pv de synthése</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#" data-toggle="modal" data-target="#RelevéModal">Relevé</a></li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </nav>

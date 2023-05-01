@@ -45,30 +45,6 @@ export default class UtilisateurControler{
     }
 
 
- /**
-      * ceate a new account
-      * @param {Express.Request} req 
-      * @param {Express.Response} res 
-      * @returns Express.res
-    */
-    signup(req, res) {
-    console.log("yoooooooo");
-    bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-        console.log(hash);
-      const user = new UtilisateurModel.create({
-        email: req.body.email,
-        password: hash
-      });
-      res.status(HttpResponse.OK).json({ message: 'Objet enregistré !'});
-      console.log(user);
-        
-        console.log(error);
-    })
-    .catch(error => res.status(500).json({ error }));
-};
-
-
      /**
       * Login of a user
       * @param {Express.Request} req 
@@ -148,7 +124,7 @@ async remove(req, res) {
      * @param {Express.Response} res 
      * @returns Express.res
      */
- async single(req, res) {
+ async findUser(req, res) {
     try {
         const data = await UtilisateurModel.findOne({ _id: req.params.id });
         if (data != null) {
@@ -156,7 +132,7 @@ async remove(req, res) {
             return res.send({ data: data });
         } else {
             res.status(HttpResponse.NOT_FOUND);
-            return res.send({ message: `${req.params.id} does not corresponde to any Test` })
+            return res.send({ message: `${req.params.id} does not corresponde to any User` })
         }
     } catch (error) {
         if (error.name == 'CastError') {

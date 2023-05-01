@@ -5,17 +5,24 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { ProfileComponent } from './profile/profile.component';
 import { NavComponent } from './nav/nav.component';
-import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { FooterComponent } from './footer/footer.component';
+import { ModalComponent } from './modal/modal.component';
+import { ProfileComponent } from './profile/profile.component'
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'nav', component: NavComponent },
+  { path: 'documents', component: DocumentsComponent },
+  { path: 'sidenav', component: SidenavComponent },
+  { path: 'profile', component: ProfileComponent }
+
 ]
 
 @NgModule({
@@ -24,9 +31,11 @@ const routes: Routes = [
     DashboardComponent,
     HomeComponent,
     DocumentsComponent,
-    ProfileComponent,
     NavComponent,
-    SidemenuComponent
+    SidenavComponent,
+    FooterComponent,
+    ModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

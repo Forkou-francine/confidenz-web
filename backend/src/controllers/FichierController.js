@@ -1,19 +1,18 @@
 import { HttpResponse } from '../helpers/helper.js';
-import { OrganisationModel } from '../models/index.js';
-    
-
-export default class OrganisationController {
+import { FichierModel } from '../models/index.js';
+        
+export default class FichierController {
     constructor() {}
         
-/**
-    * return all the Organisations
+    /**
+    * return all the Files
     * @param {Express.Request} req 
     * @param {Express.Response} res 
     * @returns Express.res
-*/
+    */
    async index(req, res) {
        try {
-           let data = await OrganisationModel.find();
+           let data = await FichierModel.find();
            res.status(HttpResponse.OK);
            return res.send(data);
        } catch (error) {
@@ -24,7 +23,7 @@ export default class OrganisationController {
    }
 
    /**
-    * insert a OrganisationController in the database
+    * insert a FichierController in the database
     * @param {Express.Request} req 
     * @param {Express.Response} res 
     * @returns Express.res
@@ -32,9 +31,9 @@ export default class OrganisationController {
    async save(req, res) {
 
        try {
-           const data = await OrganisationModel.create(req.body);
+           const data = await FichierModel.create(req.body);
            res.status(HttpResponse.OK);
-           return res.send(data);
+           return res.send(data.userId);
        } catch (error) {
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);
            return res.send({ error });
@@ -43,20 +42,20 @@ export default class OrganisationController {
 
 
    /**
-    * get a single OrganisationController in the database
+    * get a single FichierController in the database
     * @param {Express.Request} req 
     * @param {Express.Response} res 
     * @returns Express.res
     */
-   async findOrg(req, res) {
+   async findFile(req, res) {
        try {
-           const data = await OrganisationModel.findOne({ _id: req.params.id });
+           const data = await FichierController.findOne({ _id: req.params.id });
            if (data != null) {
                res.status(HttpResponse.OK);
                return res.send({ data: data });
            } else {
                res.status(HttpResponse.NOT_FOUND);
-               return res.send({ message: `${req.params.id} does not corresponde to any OrganisationController` })
+               return res.send({ message: `${req.params.id} does not corresponde to any FichierController` })
            }
        } catch (error) {
            if (error.name == 'CastError') {
@@ -69,7 +68,7 @@ export default class OrganisationController {
    }
 
    /**
-    * update a OrganisationController
+    * update a FichierController
     * @param {Express.Request} req 
     * @param {Express.Response} res 
     * @returns Express.res
@@ -77,7 +76,7 @@ export default class OrganisationController {
    async update(req, res) {
 
        try {
-           let data = await OrganisationModel.updateOne({ _id: req.params.id }, req.body);
+           let data = await FichierModel.updateOne({ _id: req.params.id }, req.body);
            if (data.modifiedCount == 1 || data.matchedCount == 1) {
                res.status(HttpResponse.OK);
                return res.send({ message: "data modifier avec success!" });
@@ -92,19 +91,19 @@ export default class OrganisationController {
    }
 
    /**
-    * remove a OrganisationController
+    * remove a FichierController
     * @param {Express.Request} req 
     * @param {Express.Response} res 
     * @returns Express.res
     */
    async remove(req, res) {
-       let data = await OrganisationModel.findOne({ _id: req.params.id });
+       let data = await FichierModel.findOne({ _id: req.params.id });
        if (data == null) {
            res.status(HttpResponse.NOT_FOUND);
            return res.send({ message: `${req.params.id} does not corresponde to any data` })
        }
        try {
-           await OrganisationModel.remove({ _id: req.params.id });
+           await FichierModel.remove({ _id: req.params.id });
            res.status(HttpResponse.OK);
            return res.send({ message: 'one ow removed' });
        } catch (error) {

@@ -1,0 +1,261 @@
+<div class="modal fade" id="ajouterDocumentModal" tabindex="-1" aria-labelledby="ajouterDocumentModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Importer un Document</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/uploadfile" enctype="multipart/form-data" class=" form-sample row justify-content-center gap-3">
+            <div class="form-group">
+              <label for="class" class="form-label">Titre du document</label>
+                <input name="documentName" type="text" class="form-control" id="exampleInputUsername1" placeholder="liste des absents...">
+            </div>
+            <div class="form-group">
+                <label for="class" class="form-label"> Date de création</label>
+                  <input type="date" name="creationDate" class="form-control" id="exampleInputUsername1" placeholder="aujourd'hui">
+              </div>
+              <div class="form-group">
+                 <label class="col-form-label">Format du fichier</label>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                                .xls
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                                .csv
+                              </label>
+                            </div>
+                          </div>
+              </div>
+              <div class="form-group">
+                <label for="formFileMultiple" class="form-label ">Choisir un fichier</label>
+                  <input class="form-control" type="file" id="formFileMultiple" multiple />
+                </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+          <input type="submit" class="btn btn-primary" value="Importer">
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End Modal for detail candidate -->
+ <!-- Modal for note  -->
+<div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="modal-title">Voir les notes  d'un étudiant</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form action="" class="row justify-content-center gap-3">
+    <div class="col-lg-12 row flex-column">
+      <label for="class" class="form-label">Sélectionner la classe</label>
+      <select name="class" id="class" class="form-select">
+        <option value="">INGE 1 - Tronc commun</option>
+        <option value="">INGE 2 - Tronc commun</option>
+        <option value="">INGE 3 ISI</option>
+        <option value="">INGE 3 SRT</option>
+        <option value="">INGE 4 ISI</option>
+        <option value="">INGE 4 SRT</option>
+        <option value="">INGE 5 ISI</option>
+        <option value="">INGE 5 SRT</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="year" class="form-label">Sélectionner l'année académique</label>
+      <select name="year" id="year" class="form-select">
+        <option value="">2022 - 2023</option>
+        <option value="">2021 - 2022</option>
+        <option value="">2020 - 2021</option>
+        <option value="">2019 - 2020</option>
+        <option value="">2018 - 2019</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="year" class="form-label">Veuillez entrer le code de la matiére</label>
+      <input type="text" name= "cursus" id="cursus"  placeholder="Entrer le code de l'UE" class="form-control" />
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+  <input type="submit" class="btn btn-primary" value="Envoyer">
+</div>
+</div>
+</div>
+</div><!-- End Modal for note  -->
+
+<!-- Modal for Bilan Absence -->
+<div class="modal fade" id="bilanAbsModal" tabindex="-1" aria-labelledby="bilanAbsModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="bilanAbsModal">Générer le  bilan d'absence</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form action="" class="row justify-content-center gap-3" >
+    <div class="col-lg-12 row flex-column">
+      <label for="class" class="form-label">Sélectionner la classe</label>
+      <select name="class" id="class" class="form-select">
+        <option value="">INGE 1 - Tronc commun</option>
+        <option value="">INGE 2 - Tronc commun</option>
+        <option value="">INGE 3 ISI</option>
+        <option value="">INGE 3 SRT</option>
+        <option value="">INGE 4 ISI</option>
+        <option value="">INGE 4 SRT</option>
+        <option value="">INGE 5 ISI</option>
+        <option value="">INGE 5 SRT</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="year" class="form-label">Sélectionner l'année académique</label>
+      <select name="year" id="year" class="form-select">
+        <option value="">2022 - 2023</option>
+        <option value="">2021 - 2022</option>
+        <option value="">2020 - 2021</option>
+        <option value="">2019 - 2020</option>
+        <option value="">2018 - 2019</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="semester" class="form-label">Sélectionner le semestre</label>
+      <select name="semester" id="semester" class="form-select">
+        <option value="">Semestre 1</option>
+        <option value="">Semestre 2</option>
+      </select>
+    </div>
+   
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+  <input type="submit" class="btn btn-primary" value="Envoyer">
+</div>
+</div>
+</div>
+</div><!-- End Modal for Bilan Absence -->
+
+<!-- Modal for note statement -->
+<div class="modal fade" id="modifierModal" tabindex="-1" aria-labelledby="modifierModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="modal-title">Modifier ses Informations</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form class="forms-sample">
+    <div class="form-group row">
+      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Nom</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+      <div class="col-sm-9">
+        <input type="number" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="exampleInputPhoto" class="col-sm-9 col-form-label">Insérer une photo</label>
+      <input type="file" name="img[]" class="file-upload-default">
+      <div class="input-group col-xs-12">
+        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+        <span class="input-group-append">
+          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+        </span>
+      </div>
+    </div>
+    <div class="form-check form-check-flat form-check-primary">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input">
+        Remember me
+      </label>
+    </div>
+    <input type="submit" class="btn btn-primary mr-2" value="Envoyer">
+    <button class="btn btn-light">Cancel</button>
+  </form>
+</div>
+</div>
+</div>
+</div><!-- End Modal for note statement -->
+
+<!-- Modal for PV -->
+<div class="modal fade" id="pvModal" tabindex="-1" aria-labelledby="pvModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="pvModal">Générer les procès verbaux</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <form action="" class="row justify-content-center gap-3" >
+    <div class="col-lg-12 row flex-column">
+      <label for="class" class="form-label">Sélectionner la classe</label>
+      <select name="class" id="class" class="form-select">
+        <option value="">INGE 1 - Tronc commun</option>
+        <option value="">INGE 2 - Tronc commun</option>
+        <option value="">INGE 3 ISI</option>
+        <option value="">INGE 3 SRT</option>
+        <option value="">INGE 4 ISI</option>
+        <option value="">INGE 4 SRT</option>
+        <option value="">INGE 5 ISI</option>
+        <option value="">INGE 5 SRT</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="year" class="form-label">Sélectionner l'année académique</label>
+      <select name="year" id="year" class="form-select">
+        <option value="">2022 - 2023</option>
+        <option value="">2021 - 2022</option>
+        <option value="">2020 - 2021</option>
+        <option value="">2019 - 2020</option>
+        <option value="">2018 - 2019</option>
+      </select>
+    </div>
+    <div class="col-lg-12 row flex-column">
+      <label for="semester" class="form-label">Sélectionner le semestre</label>
+      <select name="semester" id="semester" class="form-select">
+        <option value="">Semestre 1</option>
+        <option value="">Semestre 2</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+  <input type="submit" class="btn btn-primary" value="Envoyer">
+</div>
+</div>
+</div>
+</div><!-- End Modal for PV -->

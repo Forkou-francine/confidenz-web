@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
 const fichierSchema = mongoose.Schema({
-  fileId: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
   userId: { 
