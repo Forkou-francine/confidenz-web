@@ -11,7 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './modal/modal.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { DetailsComponent } from './details/details.component'
 
 
 const routes: Routes = [
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'nav', component: NavComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'sidenav', component: SidenavComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'details', component: DetailsComponent }
+
 
 ]
 
@@ -35,7 +38,8 @@ const routes: Routes = [
     SidenavComponent,
     FooterComponent,
     ModalComponent,
-    ProfileComponent
+    ProfileComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

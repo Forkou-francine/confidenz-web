@@ -1,0 +1,148 @@
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+  <app-nav></app-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+     <app-sidenav></app-sidenav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="dashboard">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="documents">All documents</a>
+              </li>
+              <li class="breadcrumb-item active">Informations</li>
+            </ol>
+          </nav>
+
+            <div class="row">
+                <div class="col-md-11 grid-margin stretch-card">
+                    <div class="card position-relative">
+                        <div class="card-body">
+                            <div 
+                                class="carousel slide detailed-report-carousel position-static pt-2"
+                                data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                          <div class="col-md-11 col-xl-3 d-flex flex-column justify-content-start">
+                                            <div class="ml-xl-4 mt-3">
+                                              <span style="text-align: left; font-size:larger;"><h3> Mes Informations </h3></span>
+                                             </div>  
+                                             </div>
+                                            <div class="col-md-12 col-xl-9">
+                                                <div class="row">
+                                                    <div class="col-md-6 ">
+                                                        <div >
+                                                            <table class="table table-borderless report-table">
+                                                                <tr>
+                                                                    <td class="text-muted">Nom </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">AtebaJean</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">Prénom </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">Berba
+                                                                        </h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td class="text-muted">Matricule </td>
+                                                                  <td>
+                                                                      <h5 class="font-weight-bold mb-0">1920i45
+                                                                      </h5>
+                                                                  </td>
+                                                              </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">Date de Naissance
+                                                                    </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            23/01/2001</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">Lieux de Naissance
+                                                                    </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            Bertoua</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">Niveau Actuel </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            Ingénieur 1</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">E-mail </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            JeanB@gmail.com</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">N° tél </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            614523687</h5>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-muted">Mot de passe </td>
+                                                                    <td>
+                                                                        <h5 class="font-weight-bold mb-0">
+                                                                            xxxxxxx</h5>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="template-demo">
+                                                                            <button type="button" class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#modifierModal" href="#modifierModal" aria-expanded="false" aria-controls="ui-basic" >
+                                                                              <i class="ti-pencil-alt btn-icon-prepend"></i>                                                    
+                                                                              Modifier
+                                                                            </button>
+                                                                          </div>
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                   
+        <!-- content-wrapper ends -->
+         <!-- Modal for Attestation  -->
+  <app-modal></app-modal>
+  <!-- Modal for Bilan Absence -->
+ 
+
+        <!-- partial:partials/_footer.html -->
+        <app-footer></app-footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
