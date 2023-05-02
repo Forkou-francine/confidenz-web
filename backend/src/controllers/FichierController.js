@@ -1,5 +1,6 @@
 import { HttpResponse } from '../helpers/helper.js';
 import { FichierModel } from '../models/index.js';
+import File from '../helpers/file.js'
         
 export default class FichierController {
     constructor() {}
@@ -30,11 +31,15 @@ export default class FichierController {
     */
    async save(req, res) {
 
+    console.log(req.files);
        try {
-           const data = await FichierModel.create(req.body);
+
+    const fichier =  await File.saveFile(req.files.file, "uploads" );
+        //    const data = await FichierModel.create(req.body);
            res.status(HttpResponse.OK);
-           return res.send(data.userId);
+           return res.send({fichier});
        } catch (error) {
+        console.log(error);
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);
            return res.send({ error });
        }

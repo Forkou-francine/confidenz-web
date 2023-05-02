@@ -1,4 +1,5 @@
-import multer from multer
+import multer from 'multer'
+
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -17,3 +18,5 @@ const MIME_TYPES = {
     }
   });
   
+
+  export default storage;
