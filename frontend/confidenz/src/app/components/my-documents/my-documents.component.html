@@ -1,0 +1,126 @@
+
+
+<body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+     
+      <app-nav></app-nav>
+  
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+       <app-sidenav></app-sidenav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+   
+              <div class="card">
+                  <div class="card-body">
+                    
+                    
+                    <div class="d-flex justify-content-end " style="margin-bottom: 10px">
+                    <button data-toggle="modal" data-target="#ajouterDocumentModal" type="button" class="btn btn-primary btn-icon-text">
+                      <i class="ti-upload btn-icon-prepend"></i>                                                    
+                      Upload
+                    </button>
+                  </div>
+                  <h4 class="card-title">Mes Documents</h4>
+                  <p class="card-description">
+                   Voici tous les documents que vous avez uploadé
+                  </p>  
+                    <div class="table-responsive">
+                      <table id="table_id" class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>
+                              Titre
+                            </th>
+                            <th>
+                               Derniere modification
+                            </th>
+                            <th>
+                              Auteur
+                            </th>
+                            <th>
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td routerLink="/details" class="py-1">
+                              <i class="bi bi-file-earmark-arrow-up u--full"></i>&nbsp;<span style="font-size:16px ; ">Reglement interieur</span>
+                            </td>
+                            <td>
+                              12 Octobre 2022
+                            </td>
+                            <td>
+                              TAGNE Elohim
+                            </td>
+                            <td>
+                              <div class="icon d-flex gap-lg-2 ">
+                                  <div>
+                                      <button type="button" class="btn btn-primary btn-rounded btn-icon btn-lg ">
+                                          <i class="icon-share"></i>
+                                          
+                                      </button>
+                                  </div>
+                                  <div>
+                                      <button type="button" class="btn btn-primary btn-rounded btn-icon">
+                                          <i class="icon-download "></i>
+                                      </button>
+                                  </div>    
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td class="py-1">
+                                <i class="bi bi-file-earmark-arrow-up"></i>&nbsp;<span style="font-size:16px ; ">Reglement interieur</span>
+                              </td>
+                              <td>
+                                12 Octobre 2022
+                              </td>
+                              <td>
+                                TAGNE Elohim
+                              </td>
+                              <td>
+                                <div class="icon d-flex gap-lg-2 ">
+                                    <div>
+                                        <button type="button" class="btn btn-primary btn-rounded btn-icon btn-lg ">
+                                            <i class="icon-share"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-primary btn-rounded btn-icon">
+                                            <i class="icon-download"></i>
+                                        </button>
+                                    </div>    
+                                </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+          <!-- content-wrapper ends -->
+  
+          <!--Ajout Document-->
+       
+          <app-modal></app-modal>
+  
+          <!-- partial:partials/_footer.html -->
+          <app-footer></app-footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    </div>
+    <!-- container-scroller -->
+  
+    <!-- plugins:js -->
+   
+  
+  
