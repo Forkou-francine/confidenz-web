@@ -22,7 +22,7 @@ const db = new Database()
 await db.createConnection()
 
 const app = express();
-
+app.use(cors());
 //set the template engine  
 app.set('view engine','ejs');  
 

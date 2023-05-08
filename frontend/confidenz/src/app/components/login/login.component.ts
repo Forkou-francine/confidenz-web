@@ -24,10 +24,6 @@ export class LoginComponent {
   user: any;
   author: any;
 
-  wrongEmail = false;
-  wrongPassword = false;
-
-
   constructor( private router: Router,
               private logService: LoginService,
               private route: ActivatedRoute,
@@ -37,26 +33,21 @@ export class LoginComponent {
 
       ngOnInit(){
         this.validationUserForm = this.formBuiler.group({
-          email: ['', Validators.required,             
-                    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
-          password: ['', Validators.required,
-                    Validators.minLength(5)]
+          email: ['',Validators.compose([ Validators.required,             
+            Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+          password: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
         });
       }
 
-
       get f(){ return this.validationUserForm.controls; }
-
 
    onSubmit(){
     this.submitted = true
     console.log(this.f);
-    
 
-   /*  if (this.validationUserForm.invalid) {
+   if (this.validationUserForm.invalid) {
       return;
     }
-
     this.loading= true;
     this.logService.login(this.f['email'].value, this.f['password'].value)
     .pipe(first())
@@ -69,7 +60,7 @@ export class LoginComponent {
       error: error => {
         this.loading= false;
       }
-    }) */
+    }) 
    }
      
   
