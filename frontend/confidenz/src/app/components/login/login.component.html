@@ -11,10 +11,10 @@
               <h6 style="text-align: center;" class="font-weight-light">Connectez-vous</h6>
               <form class="pt-3" [formGroup]="validationUserForm" (ngSubmit)="onSubmit">
                 <div class="form-group"  >
-                  <input type="email" formControlName="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Entrez votre email"  
-                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Username is required</div>
+                  <input type="email" formControlName="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Entrez votre email"
+                  [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" >
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Username is required</div>
                 </div>
                 </div>
 
@@ -34,7 +34,7 @@
 
                 <div class="form-group">
                   <input type="password" formControlName="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Entrez votre mot de passe"
-                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
                 </div>
                 <div class="mt-5">
                   <ng-container *ngFor="let validation of validationUserMessage.password">
