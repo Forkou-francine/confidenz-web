@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const fichierSchema = mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  userId: { 
+  user: { 
     type: mongoose.Schema.Types.ObjectId, 
     required: true,
     ref: "Utilisateur"
@@ -13,9 +13,9 @@ const fichierSchema = mongoose.Schema({
 
 });
 
+
 /**
  * @type {mongoose.Model}
  */
-const FichierModel = mongoose.model('Fichier', fichierSchema)
-
+const FichierModel = mongoose.model('Fichier', fichierSchema);
 export default FichierModel

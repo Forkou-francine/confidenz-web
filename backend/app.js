@@ -8,6 +8,8 @@ import OrgRoute from './src/routes/org.js'
 import AuthRoute from './src/routes/authicate.js'
 import FileRoute from './src/routes/fichiers.js'
 import fileUpload from 'express-fileupload';
+import cors from 'cors'
+import mongoose from 'mongoose';
 const env = 'develop'
 const root ='/';
 import path from 'path'
@@ -30,10 +32,10 @@ app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(root, 'frontend/confidenz')));
-app.get('*', (req, res) => {
-  res.sendFile('dist/frontend/confidenz/index.html', {root});
-});
+// app.use(express.static(path.join(root, 'frontend/confidenz')));
+// app.get('*', (req, res) => {
+//   res.sendFile('dist/frontend/confidenz/index.html', {root});
+// });
 
 app.use(fileUpload());
 

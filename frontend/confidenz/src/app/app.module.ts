@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterLinkActive } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -15,12 +16,14 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MyDocumentsComponent } from './components/my-documents/my-documents.component';
-import { NotificationsComponent } from './components/notifications/notifications.component'
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { LoginComponent } from './components/login/login.component'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'nav', component: NavComponent },
   { path: 'documents', component: DocumentsComponent },
@@ -28,9 +31,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'my-documents', component: MyDocumentsComponent },
-  { path: 'notifications', component: NotificationsComponent }
-
-
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'login', component: LoginComponent }
 
 
 ]
@@ -48,13 +50,15 @@ const routes: Routes = [
     ProfileComponent,
     DetailsComponent,
     MyDocumentsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports:[
     RouterModule

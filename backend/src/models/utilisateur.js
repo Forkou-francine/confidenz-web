@@ -7,8 +7,6 @@ const utilisateurSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   imageUrl: { type: String, required: false },
   telephone: { type: Number, required: true },
-  isAuthor: { type: Boolean, required: false},
-  isAdmin : { type : Boolean, default: false }
 });
 
 utilisateurSchema.plugin(uniqueValidator);

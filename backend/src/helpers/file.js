@@ -1,6 +1,7 @@
 import path from "path"
 import fs from "fs"
 import UploadedFile from 'express-fileupload'
+import mongoose from "mongoose";
 
 export default class File{
     constructor() {}

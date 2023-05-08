@@ -1,6 +1,8 @@
 import { HttpResponse } from '../helpers/helper.js';
 import { FichierModel } from '../models/index.js';
 import File from '../helpers/file.js'
+// import mongoose from 'mongoose';
+
         
 export default class FichierController {
     constructor() {}
@@ -46,6 +48,7 @@ export default class FichierController {
    }
 
 
+  
    /**
     * get a single FichierController in the database
     * @param {Express.Request} req 
@@ -70,6 +73,24 @@ export default class FichierController {
            }
            return res.send({ message: error.message });
        }
+   }
+
+
+    /**
+    * get a single FichierController in the database
+    * @param {Express.Request} req 
+    * @param {Express.Response} res 
+    * @returns Express.res
+    */
+   async findUserByFiles( req, res) {
+    try {
+        const data = FichierModel.find().populate('userId')
+        .then( p=> console.log(p))
+        .catch(error => console.log(error));
+    } catch (error) {
+        res.status(HttpResponse.INTERNAL_SERVER_ERROR);
+        return res.send({ error });
+    }
    }
 
    /**

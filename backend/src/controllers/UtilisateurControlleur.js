@@ -76,6 +76,31 @@ export default class UtilisateurControler{
     }
 
 
+     /**
+      * Login of a user
+      * @param {Express.Request} req 
+      * @param {Express.Response} res 
+      * @returns Express.res
+    */
+    async getUserFiles(req, res) {
+        try {
+            UtilisateurModel.findOne({_id: req.body.ObjectId})
+                .populate('fichiers')
+                .then( user => {
+                    res.json(user);
+                    console.log(user);
+            })
+        } catch (error) {
+            if (error.name == 'CastError') {
+                res.status(HttpResponse.BAD_REQUEST);
+            } else {
+                res.status(HttpResponse.INTERNAL_SERVER_ERROR);
+            }
+            return res.send({ message: error.message });
+        }
+    }
+
+
     /**
      * update a User
      * @param {Express.Request} req 
