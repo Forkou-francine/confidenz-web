@@ -5,6 +5,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { ConnexionForm } from 'src/app/classes/connexion-form';
 import { first } from 'rxjs/operators';
+import { BaseUrl } from 'src/app/classes/base-url';
 
 
 
@@ -28,14 +29,14 @@ export class LoginComponent {
               private logService: LoginService,
               private route: ActivatedRoute,
               public formBuiler: FormBuilder,
-              private httpService: HttpService){}
+              ){}
 
 
       ngOnInit(){
         this.validationUserForm = this.formBuiler.group({
           email: ['',Validators.compose([ Validators.required,             
             Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-          password: ['', Validators.compose([Validators.required, Validators.minLength(5)])]
+          password: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
         });
       }
 
@@ -44,6 +45,8 @@ export class LoginComponent {
    onSubmit(){
     this.submitted = true
     console.log(this.f);
+    console.log(this.f['email'].value);
+    
 
    if (this.validationUserForm.invalid) {
       return;
@@ -53,8 +56,10 @@ export class LoginComponent {
     .pipe(first())
     .subscribe({
       next: () => {
-        const retunUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        const retunUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
         this.router.navigateByUrl(retunUrl);
+        console.log(retunUrl);
+        
       },
 
       error: error => {
@@ -64,19 +69,32 @@ export class LoginComponent {
    }
      
   
-      // loginUser(connexionForm:any){
+      // loginUser(connexionForm: ConnexionForm){
+      //   this.submitted = true
+      //   console.log(this.f['email'].value);
       //   console.log(connexionForm);
+      //   if (this.validationUserForm.invalid) {
+      //         return;
+      //       }
+      //       this.loading= true;
+      //       this.logService.login(connexionForm)
+      //       .pipe(first())
+      //       .subscribe({
+      //         next: () => {
+      //           console.log(this.f['email']);
+                
+      //           const retunUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      //           this.router.navigateByUrl(retunUrl);
+      //           console.log(retunUrl);
+                
+      //         },
+        
+      //         error: error => {
+      //           this.loading= false;
+      //         }
+      //       }) 
       //   this.logService.login(connexionForm).subscribe((data) => {
       //     this.user = data;
-      //     if(this.user.body == "mdp incorrect"){
-      //       this.wrongPassword = true
-      //       this.wrongPassword = false
-      //     }
-      //     else if(this.user.body == "email doesn't exist"){
-      //       this.wrongEmail = true
-      //       this.wrongPassword = false
-      //     }
-      //     else{
       //       localStorage.setItem("user", JSON.stringify(this.user));
     
       //       // recuperer les infos de l'utilisateur
@@ -87,12 +105,21 @@ export class LoginComponent {
       //       this.httpService.setUserInfos(this.userInfos)
       //       })
     
-      //       this.router.navigate(['tab/home'])
-      //     }
+      //       this.router.navigate(['/home'])
+          
       //   })
       // }
 
-
+      // validationUserMessage ={
+      //   email:[
+      //     {type:"required", message:"Please enter your Email"},
+      //     {type:"pattern", message:"The Email entered is Incorrect. Try again"}
+      //   ],
+      //   password:[
+      //     {type:"required", message:"Please enter your password!"},
+      //     {type:"minlength", message:"The Password must be at least 5 characters or more"}
+      //   ]
+      // }
 
       goToRegister(){
         this.router.navigate(['register']);
@@ -100,17 +127,5 @@ export class LoginComponent {
       goToHome(){
         this.router.navigate(['home']);
       }
-
-      validationUserMessage ={
-        email:[
-          {type:"required", message:"Please enter your Email"},
-          {type:"pattern", message:"The Email entered is Incorrect. Try again"}
-        ],
-        password:[
-          {type:"required", message:"Please enter your password!"},
-          {type:"minlength", message:"The Password must be at least 5 characters or more"}
-        ]
-      }
-    
 
 }

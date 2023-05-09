@@ -1,6 +1,7 @@
 import express from 'express'
 import FichierControler from '../controllers/FichierController.js'
 import FichierModel  from '../models/fichier.js'
+import cors from 'cors';
 
 const FicControler = new FichierControler();
 const router = express.Router();

@@ -12,6 +12,10 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 const env = 'develop'
 const root ='/';
+var corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200
+}
 import path from 'path'
 
 
@@ -22,7 +26,13 @@ const db = new Database()
 await db.createConnection()
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:4200'],
+     "methods": "GET,PUT,POST",
+     "preflightContinue": false,
+     "optionsSuccessStatus": 204,
+     "responseHeader": ["Content-Type"],
+}));
 //set the template engine  
 app.set('view engine','ejs');  
 
@@ -45,8 +55,16 @@ app.use('/auth', AuthRoute);
 
 app.use('/org', OrgRoute);
 
-app.use('/file', FileRoute);
+app.use('/file', cors(corsOptions), FileRoute);
+// app.route('/api/thumbnail-upload').post(onFileupload);
 
+// export function onFileupload(req, res) {
+
+//   let file = req['files'].thumbnail;
+
+//   console.log("File uploaded: ", file.name);
+
+// }
 
 //fetch data from the request  
 app.use(bodyParser.urlencoded({extended:false}));  
@@ -57,6 +75,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200', always);
+
+
     next();
   });
 

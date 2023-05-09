@@ -1,8 +1,12 @@
 
 
 export class Users {
-    name?: string;
+    firstName?: string;
+    lastName?:string;
     email?: string;
-    userId?: string;
+    birthday?: Date;
+    telephone?:number;
+    password?: string;
+    id?: string;
     
 }

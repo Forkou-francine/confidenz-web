@@ -14,17 +14,17 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Bienvenue, nom_utilisateur</h3>
+                  <h3 class="font-weight-bold">Bienvenue, {{user?.lastName}}</h3>
                   <h6 class="font-weight-normal mb-0">Vous avez<span class="text-primary"> 3 nouvelles notifications !</span></h6>
                 </div>
             <div style="margin-top: 20px;">
               <div class="form-group">
-                <label>Insérez un fichier ici</label>
-                <input type="file" name="img[]" class="file-upload-default">
+                <label for="formFile">Insérez un fichier ici</label>
+                <input type="file"(change)="onChange($event)" name="img[]" class="file-upload-default">
                 <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload File">
                   <span class="input-group-append">
-                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                    <button class="file-upload-browse btn btn-primary" (click)="onUpload()" type="button">Upload</button>
                   </span>
                 </div>
               </div>

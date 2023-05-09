@@ -53,35 +53,43 @@
     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <form class="forms-sample">
+    <form class="forms-sample" *ngIf="!loading" [formGroup]="modificationForm" (ngSubmit)="onSubmit()">
       <div class="form-group row">
         <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Nom</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
+          <input type="text" formControlName="firstName" class="form-control" id="exampleInputUsername2" placeholder="Entrez votre nom">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Prénom</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="lastName" class="form-control" id="exampleInputUsername3" placeholder="Entrez votre prénom">
         </div>
       </div>
       <div class="form-group row">
         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+          <input type="email" formControlName="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
         </div>
       </div>
       <div class="form-group row">
-        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Téléphone</label>
         <div class="col-sm-9">
-          <input type="number" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
+          <input type="number" formControlName="telephone" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
         </div>
       </div>
       <div class="form-group row">
-        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password
+          <em *ngIf="id">(Leave blank to keep the same password)</em>
+        </label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+          <input type="password" formControlName="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
         </div>
       </div>
       <div class="form-group row">
         <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
+          <input type="password" formControlName="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
         </div>
       </div>
       <div class="form-group row">
@@ -100,9 +108,15 @@
           Remember me
         </label>
       </div>
-      <input type="submit" class="btn btn-primary mr-2" value="Envoyer">
-      <button class="btn btn-light">Cancel</button>
+      <button  [disabled]="submitting" type="submit" class="btn btn-primary mr-2" >
+        <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+        Enregistrer
+        </button>
+      <button routerLink="/profile" class="btn btn-light">Cancel</button>
     </form>
+    <div *ngIf="loading" class="text-center m-5">
+      <span class="spinner-border spinner-border-lg align-center"></span>
+  </div>
   </div>
   </div>
   </div>
@@ -114,52 +128,6 @@
 
 
 <!-- End Modal for detail candidate -->
- <!-- Modal for note  -->
-<div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModal" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-  <h5 class="modal-title" id="modal-title">Voir les notes  d'un étudiant</h5>
-  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body">
-  <form action="" class="row justify-content-center gap-3">
-    <div class="col-lg-12 row flex-column">
-      <label for="class" class="form-label">Sélectionner la classe</label>
-      <select name="class" id="class" class="form-select">
-        <option value="">INGE 1 - Tronc commun</option>
-        <option value="">INGE 2 - Tronc commun</option>
-        <option value="">INGE 3 ISI</option>
-        <option value="">INGE 3 SRT</option>
-        <option value="">INGE 4 ISI</option>
-        <option value="">INGE 4 SRT</option>
-        <option value="">INGE 5 ISI</option>
-        <option value="">INGE 5 SRT</option>
-      </select>
-    </div>
-    <div class="col-lg-12 row flex-column">
-      <label for="year" class="form-label">Sélectionner l'année académique</label>
-      <select name="year" id="year" class="form-select">
-        <option value="">2022 - 2023</option>
-        <option value="">2021 - 2022</option>
-        <option value="">2020 - 2021</option>
-        <option value="">2019 - 2020</option>
-        <option value="">2018 - 2019</option>
-      </select>
-    </div>
-    <div class="col-lg-12 row flex-column">
-      <label for="year" class="form-label">Veuillez entrer le code de la matiére</label>
-      <input type="text" name= "cursus" id="cursus"  placeholder="Entrer le code de l'UE" class="form-control" />
-    </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
-  <input type="submit" class="btn btn-primary" value="Envoyer">
-</div>
-</div>
-</div>
-</div><!-- End Modal for note  -->
 
 <!-- Modal for Bilan Absence -->
 <div class="modal fade" id="bilanAbsModal" tabindex="-1" aria-labelledby="bilanAbsModal" aria-hidden="true">
@@ -248,7 +216,7 @@
     </div>
     <div class="col-lg-12 row flex-column">
       <label for="semester" class="form-label">Sélectionner le semestre</label>
-      <select name="semester" id="semester" class="form-select">
+      <select name="semester" id="sem" class="form-select">
         <option value="">Semestre 1</option>
         <option value="">Semestre 2</option>
       </select>

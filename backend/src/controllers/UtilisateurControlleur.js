@@ -63,6 +63,12 @@ export default class UtilisateurControler{
                         .then(valid => {
                             res.status(200).json({
                                 userId: user._id,
+                                lastName: user.lastName,
+                                firstName: user.firstName,
+                                birthday: user.birthday,
+                                telephone: user.telephone,
+                                email: user.email,
+                                password: user.password,
                                 token: jwt.sign(
                                     { userId: user._id },
                                     'RANDOM_TOKEN_SECRET',
@@ -76,8 +82,28 @@ export default class UtilisateurControler{
     }
 
 
+
+    async signup(req, res){
+        try {
+                bcrypt.hash(req.body.password, 10)
+                  .then(hash => {
+                    const user = new UtilisateurModel({
+                      email: req.body.email,
+                      password: hash
+                    });
+                    user.save()
+                      .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+                      .catch(error => res.status(400).json({ error }));
+                  })
+                  .catch(error => res.status(500).json({ error }));
+          
+        } catch (error) {
+            
+        }
+    }
+
      /**
-      * Login of a user
+      * All files of a user
       * @param {Express.Request} req 
       * @param {Express.Response} res 
       * @returns Express.res
@@ -152,13 +178,13 @@ async remove(req, res) {
      */
  async findUser(req, res) {
     try {
-        const data = await UtilisateurModel.findOne({ _id: req.params.id });
+        const data = await UtilisateurModel.findOne({ email: req.params.email });
         if (data != null) {
             res.status(HttpResponse.OK);
             return res.send({ data: data });
         } else {
             res.status(HttpResponse.NOT_FOUND);
-            return res.send({ message: `${req.params.id} does not corresponde to any User` })
+            return res.send({ message: `${req.params.email} does not corresponde to any User` })
         }
     } catch (error) {
         if (error.name == 'CastError') {

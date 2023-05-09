@@ -7,9 +7,13 @@ const UserControler = new UtilisateurControler()
 const router = express.Router()
 
 
-router.post('/login/:email', (req, res) => UserControler.login(req, res));
+router.post('/login', (req, res) => UserControler.login(req, res));
 router.get('/findFiles', (req, res) => UserControler.getUserFiles(req, res));
 router.get('/all', (req, res) => UserControler.index(req, res));
+router.get('/findUser/:email', (req, res) => UserControler.findUser(req, res));
+router.post('/create', (req, res) => UserControler.create(req, res));
+router.put('/update/:id', (req, res) => UserControler.update(req, res));
+router.post('/register', (req, res) => UserControler.signup(req, res));
 
 
 export default router;

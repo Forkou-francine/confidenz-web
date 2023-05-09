@@ -18,7 +18,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { MyDocumentsComponent } from './components/my-documents/my-documents.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { LoginComponent } from './components/login/login.component'
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,9 @@ const routes: Routes = [
   { path: 'details', component: DetailsComponent },
   { path: 'my-documents', component: MyDocumentsComponent },
   { path: 'notifications', component: NotificationsComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
+
 
 
 ]
@@ -51,14 +54,16 @@ const routes: Routes = [
     DetailsComponent,
     MyDocumentsComponent,
     NotificationsComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     RouterModule

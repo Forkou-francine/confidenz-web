@@ -14,11 +14,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  baseUrl =  BaseUrl;
-  test = new BaseUrl()
-
+ 
   private userSubject!: BehaviorSubject<Users | null>;
-    public user!: Observable<Users | null>;
+    public user: Observable<Users | null>;
   
 
   
@@ -29,21 +27,18 @@ export class LoginService {
                 this.user = this.userSubject.asObservable();
    }
 
-// login(connexionForm: ConnexionForm){
-//   console.log(connexionForm);
-//   return this.http.post(this.baseUrl+ "user/login", connexionForm);
-  
-// }
-
+   public get userValue(){
+    return this.userSubject.value;
+   }
 
 
 login(email: string, password: string) {
-  return this.http.post<Users>(`${environment.apiUrl}/user/login`, { email, password })
+  return this.http.post<Users>(`${environment.apiUrl}/user/login/`, { email, password })
       .pipe(map(user => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-          return user;
+          return user; 
       }));
 }
 
@@ -51,8 +46,10 @@ logout() {
   // remove user from local storage and set current user to null
   localStorage.removeItem('user');
   this.userSubject.next(null);
-  this.router.navigate(['/account/login']);
+  this.router.navigate(['/components/login']);
 }
+
+
 
 
 
