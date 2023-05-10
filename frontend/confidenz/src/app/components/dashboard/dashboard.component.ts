@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // // OnClick of button Upload
- async onUpload() {
+ onUpload() {
     this.loading = !this.loading;
       console.log(this.file);
       const formData = new FormData();
@@ -49,6 +49,8 @@ export class DashboardComponent implements OnInit {
         }
       }
       );
+      console.log(formData);
+      
   }
 
 

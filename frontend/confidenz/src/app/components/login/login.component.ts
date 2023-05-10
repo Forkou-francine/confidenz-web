@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
 import { ConnexionForm } from 'src/app/classes/connexion-form';
 import { first } from 'rxjs/operators';
 import { BaseUrl } from 'src/app/classes/base-url';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 
@@ -29,6 +30,7 @@ export class LoginComponent {
               private logService: LoginService,
               private route: ActivatedRoute,
               public formBuiler: FormBuilder,
+              private alertService: AlertService
               ){}
 
 
@@ -43,7 +45,8 @@ export class LoginComponent {
       get f(){ return this.validationUserForm.controls; }
 
    onSubmit(){
-    this.submitted = true
+    this.submitted = true;
+    this.alertService.clear();
     console.log(this.f);
     console.log(this.f['email'].value);
     
@@ -63,6 +66,7 @@ export class LoginComponent {
       },
 
       error: error => {
+        this.alertService.error(error);
         this.loading= false;
       }
     }) 

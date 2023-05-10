@@ -84,8 +84,7 @@ export class ModalComponent implements OnInit{
 
   private saveUser() {
       // create or update user based on id param
-      return this.id
-          ? this.httpService.update(this.id!, this.modificationForm.value)
-          : this.httpService.register(this.modificationForm.value);
+      return  this.httpService.update(this.id!, this.modificationForm.value);
+         
   }
 }

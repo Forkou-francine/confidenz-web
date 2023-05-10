@@ -5,6 +5,7 @@ import File from '../helpers/file.js'
 
         
 export default class FichierController {
+
     constructor() {}
         
     /**
@@ -33,13 +34,15 @@ export default class FichierController {
     */
    async save(req, res) {
 
-    console.log(req.files);
+    //console.log(req.files);
        try {
 
     const fichier =  await File.saveFile(req.files.file, "uploads" );
+    //console.log(req);
+    console.log(req.files.file);
         //    const data = await FichierModel.create(req.body);
            res.status(HttpResponse.OK);
-           return res.send({fichier});
+           return res.send({fichier: fichier});
        } catch (error) {
         console.log(error);
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);

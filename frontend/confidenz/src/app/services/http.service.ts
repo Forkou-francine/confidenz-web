@@ -70,7 +70,6 @@ export class HttpService {
                 localStorage.setItem('user', JSON.stringify(user));
                 console.log(user);
                 
-
                 // publish updated user to subscribers
                 this.userSubject.next(user);
             }
