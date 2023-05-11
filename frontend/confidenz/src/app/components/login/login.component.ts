@@ -73,57 +73,6 @@ export class LoginComponent {
    }
      
   
-      // loginUser(connexionForm: ConnexionForm){
-      //   this.submitted = true
-      //   console.log(this.f['email'].value);
-      //   console.log(connexionForm);
-      //   if (this.validationUserForm.invalid) {
-      //         return;
-      //       }
-      //       this.loading= true;
-      //       this.logService.login(connexionForm)
-      //       .pipe(first())
-      //       .subscribe({
-      //         next: () => {
-      //           console.log(this.f['email']);
-                
-      //           const retunUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-      //           this.router.navigateByUrl(retunUrl);
-      //           console.log(retunUrl);
-                
-      //         },
-        
-      //         error: error => {
-      //           this.loading= false;
-      //         }
-      //       }) 
-      //   this.logService.login(connexionForm).subscribe((data) => {
-      //     this.user = data;
-      //       localStorage.setItem("user", JSON.stringify(this.user));
-    
-      //       // recuperer les infos de l'utilisateur
-      //       this.httpService.getInfoUser(this.user.body.email).then((ele: any)=>{
-      //         console.log('ele',ele);
-      //         this.userInfos = ele
-      //         console.log('userInfo',this.userInfos);
-      //       this.httpService.setUserInfos(this.userInfos)
-      //       })
-    
-      //       this.router.navigate(['/home'])
-          
-      //   })
-      // }
-
-      // validationUserMessage ={
-      //   email:[
-      //     {type:"required", message:"Please enter your Email"},
-      //     {type:"pattern", message:"The Email entered is Incorrect. Try again"}
-      //   ],
-      //   password:[
-      //     {type:"required", message:"Please enter your password!"},
-      //     {type:"minlength", message:"The Password must be at least 5 characters or more"}
-      //   ]
-      // }
 
       goToRegister(){
         this.router.navigate(['register']);

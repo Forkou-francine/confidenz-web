@@ -17,6 +17,6 @@ export class NavComponent {
   }
 
   logout(){
-    //this.logService.logout();
+    this.logService.logout();
   }
 }

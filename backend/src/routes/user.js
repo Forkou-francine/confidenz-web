@@ -14,6 +14,7 @@ router.get('/findUser/:email', (req, res) => UserControler.findUser(req, res));
 router.post('/create', (req, res) => UserControler.create(req, res));
 router.put('/update/:id', (req, res) => UserControler.update(req, res));
 router.post('/register', (req, res) => UserControler.signup(req, res));
+router.delete('/delete/:id', (req, res) => UserControler.remove(req, res));
 
 
 export default router;

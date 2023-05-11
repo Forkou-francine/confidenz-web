@@ -22,21 +22,27 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="home">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i class="bi bi-house-check-fill menu-icon "></i>
             <span class="menu-title">Accueil</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="dashboard">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
             <i class="bi bi-kanban-fill menu-icon "></i>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="profile">
-            <i class="bi bi-people-fill menu-icon "></i>
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">
+            <i class="bi bi-person-fill-gear menu-icon "></i>
             <span class="menu-title">Mon Profil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/all-users" routerLinkActive="active">
+            <i class="bi bi-people-fill menu-icon "></i>
+            <span class="menu-title">Utilisateurs</span>
           </a>
         </li>
         <li class="nav-item">
@@ -47,8 +53,8 @@
           </a>
           <div class="collapse" id="doc">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="documents">Tous les documents</a></li>
-              <li class="nav-item"> <a class="nav-link" href="my-documents">Mes documents</a></li>
+              <li class="nav-item"> <a class="nav-link" routerLink="/documents">Tous les documents</a></li>
+              <li class="nav-item"> <a class="nav-link" routerLink="/my-documents">Mes documents</a></li>
              
             </ul>
           </div>

@@ -8,7 +8,7 @@ export default class File{
 
     /** 
      * save the file in a specifique directory
-     * @param {UploadedFile} file 
+     * @param {UploadedFile} file
      * @param {String} _path 
      */
 
@@ -19,11 +19,11 @@ export default class File{
         const filePath = `${directory}${timeStamp}_${file.name}`;
         const fileTypes = /jpeg|jpg|png|PNG|JPEG|xlsx|xls|JPG/;
 
-        if (file.size > 1000000000) {
+        if (file.size > 100000000) {
             return { error: 'le fichier est trop grand.' }
         }
         if (!fileTypes.test(path.extname(file.name))) {
-            return { error: "le format de fichier n'est pas supporter." }
+            return { error: "le format de fichier n'est pas supporte." }
         }
 
         try {
@@ -32,7 +32,7 @@ export default class File{
             }
             await file.mv(filePath);
 
-            return { path: `/${_directory}/${timeStamp}_${file.name}` }
+            return { path: `/${_directory}/${file.name}` }
 
         } catch (error) {
             return { error }

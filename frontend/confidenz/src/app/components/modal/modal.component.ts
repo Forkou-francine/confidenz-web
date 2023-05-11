@@ -1,11 +1,11 @@
-import { Component, OnInit, importProvidersFrom } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, importProvidersFrom } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 
 import { LoginService } from 'src/app/services/login.service';
-import { HttpSentEvent } from '@angular/common/http';
+import { AlertService } from 'src/app/services/alert.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -20,16 +20,23 @@ export class ModalComponent implements OnInit{
   loading = false;
   submitting = false;
   submitted = false;
+  @Input('showModal') showModal = false;
+  @Output('onClose') onclose: EventEmitter<any> = new EventEmitter<any>();
+  @Input('iduser') iduser: any = 0;
   
 
   constructor( private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private httpService: HttpService){
+              private httpService: HttpService,
+              private alertService: AlertService){
 
   }
 
   ngOnInit() {
+    // this.iduser = this.httpService.userValue?.userId
+    // console.log(this.iduser);
+    
     this.id = this.route.snapshot.params['id'];
 
     this.modificationForm = this.formBuilder.group({
@@ -54,13 +61,17 @@ export class ModalComponent implements OnInit{
       
   }
 
+  onCloseM(): void{
+    this.onclose.emit('close')
+  }
+
   get f() { return this.modificationForm.controls; }
 
   onSubmit() {
       this.submitted = true;
 
       // reset alerts on submit
-    //  this.alertService.clear();
+    this.alertService.clear();
 
       // stop here if form is invalid
       if (this.modificationForm.invalid) {
@@ -68,23 +79,25 @@ export class ModalComponent implements OnInit{
       }
 
       this.submitting = true;
-      this.saveUser()
-          .pipe(first())
-          .subscribe({
-              next: () => {
-                  // this.alertService.success('User saved', { keepAfterRouteChange: true });
-                  this.router.navigateByUrl('/profile');
-              },
-              error: error => {
-                  // this.alertService.error(error);
-                  this.submitting = false;
-              }
-          })
+      this.saveUser().toPromise()
+      .then((data) => {
+        this.showModal = false;
+        this.submitting = false;
+        this.alertService.success('User saved', { keepAfterRouteChange: true });
+        console.log(data);
+        
+        //this.router.navigateByUrl('/profile');
+      }).catch((er) => {
+        this.alertService.error(er);
+        this.submitting = false;
+      })
   }
 
   private saveUser() {
+    this.iduser = this.httpService.userValue?.userId
+
       // create or update user based on id param
-      return  this.httpService.update(this.id!, this.modificationForm.value);
+      return  this.httpService.update(this.iduser!, this.modificationForm.value);
          
   }
 }

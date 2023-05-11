@@ -75,7 +75,11 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="template-demo">
-                                                                            <button type="button" class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#modifierModal" href="#modifierModal" aria-expanded="false" aria-controls="ui-basic" >
+                                                                            <!-- <button type="button" class="btn btn-primary btn-icon-text" data-toggle="modal" data-target="#modifierModal" href="#modifierModal" aria-expanded="false" aria-controls="ui-basic" >
+                                                                              <i class="ti-pencil-alt btn-icon-prepend"></i>                                                    
+                                                                              Modifier
+                                                                            </button> -->
+                                                                            <button type="button" class="btn btn-primary btn-icon-text"(click) = "this.showModal = true" >
                                                                               <i class="ti-pencil-alt btn-icon-prepend"></i>                                                    
                                                                               Modifier
                                                                             </button>
@@ -100,7 +104,7 @@
                    
         <!-- content-wrapper ends -->
          <!-- Modal for Attestation  -->
-  <app-modal></app-modal>
+  <app-modal [showModal] = "this.showModal" (onClose)="this.showModal = false"></app-modal>
   <!-- Modal for Bilan Absence -->
  
 

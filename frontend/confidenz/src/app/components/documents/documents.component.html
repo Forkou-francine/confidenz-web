@@ -15,9 +15,7 @@
         <div class="content-wrapper">
  
             <div class="card">
-                <div class="card-body">
-                  
-                  
+                <div class="card-body">                  
                   <div class="d-flex justify-content-end " style="margin-bottom: 10px">
                   <button data-toggle="modal" data-target="#ajouterDocumentModal" type="button" class="btn btn-primary btn-icon-text">
                     <i class="ti-upload btn-icon-prepend"></i>                                                    
@@ -60,16 +58,20 @@
                           <td>
                             <div class="icon d-flex gap-lg-2 ">
                                 <div>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-icon btn-lg ">
-                                        <i class="icon-share"></i>
-                                        
+                                    <button type="button" class="btn btn-primary btn-rounded btn-icon ">
+                                      <i class="fa fa-pen-to-square"></i>                                        
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-icon">
-                                        <i class="icon-download "></i>
+                                    <button type="button" class="btn btn-secondary btn-rounded btn-icon">
+                                        <i class="fa fa-download"></i>
                                     </button>
-                                </div>    
+                                </div>
+                                <div>
+                                  <button type="button" class="btn btn-danger btn-rounded btn-icon ">
+                                    <i class="fa fa-trash-can "></i>                                        
+                                  </button>
+                              </div>    
                             </div>
                           </td>
                         </tr>
@@ -85,17 +87,22 @@
                             </td>
                             <td>
                               <div class="icon d-flex gap-lg-2 ">
-                                  <div>
-                                      <button type="button" class="btn btn-primary btn-rounded btn-icon btn-lg ">
-                                          <i class="icon-share"></i>
-                                      </button>
-                                  </div>
-                                  <div>
-                                      <button type="button" class="btn btn-primary btn-rounded btn-icon">
-                                          <i class="icon-download"></i>
-                                      </button>
-                                  </div>    
-                              </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-rounded btn-icon ">
+                                      <i class="fa fa-pen-to-square"></i>                                        
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-secondary btn-rounded btn-icon">
+                                        <i class="fa fa-download fa-xl"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                  <button type="button" class="btn btn-danger btn-rounded btn-icon ">
+                                    <i class="fa fa-trash-can "></i>                                        
+                                  </button>
+                              </div>    
+                            </div>
                             </td>
                           </tr>
                       </tbody>
@@ -107,8 +114,33 @@
 
         <!--Ajout Document-->
      
-        <app-modal></app-modal>
-
+        <div class="modal fade" id="ajouterDocumentModal" tabindex="-1" aria-labelledby="ajouterDocumentModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Importer un Document</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/uploadfile" enctype="multipart/form-data" class=" form-sample row justify-content-center gap-3">
+                  <div class="form-group">
+                      <label for="class" class="form-label"> Date de création</label>
+                        <input type="date" name="creationDate" class="form-control" id="dateajout" placeholder="aujourd'hui">
+                    </div>
+                    <div class="form-group">
+                      <label for="formFileMultiple" class="form-label ">Choisir un fichier</label>
+                        <input class="form-control" type="file" id="formFileMultiple" multiple />
+                      </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+                <input type="submit" class="btn btn-primary" value="Importer">
+              </div>
+            </div>
+          </div>
+      </div>
+      
         <!-- partial:partials/_footer.html -->
         <app-footer></app-footer>
         <!-- partial -->

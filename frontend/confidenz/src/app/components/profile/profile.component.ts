@@ -13,16 +13,17 @@ export class ProfileComponent implements OnInit {
   user!: Users | null;
   users?: any[];
   email?: string;
+  showModal = false;
 
   constructor( private httpService: HttpService,
               private router: Router,
               private route: ActivatedRoute){
-    this.user = this.httpService.userValue;
-    console.log(this.user);
     
   }
 
   ngOnInit() {
+    this.user = this.httpService.userValue;
+    console.log(this.user);
       this.httpService.getAll()
         .pipe(first())
         .subscribe( users=> this.users = users);

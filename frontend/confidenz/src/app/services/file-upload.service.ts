@@ -8,19 +8,14 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class FileUploadService {
 
-  private baseUrl= "http://localhost:3000/file/save";
+  private baseUrl= "http://localhost:3000/file/save/";
 
   constructor(private http: HttpClient) { }
 
     // Returns an observable
     upload(file:any):Observable<any> {
 
-      return this.http.post(this.baseUrl, file,  {
-        headers: {
-          'Content-Type': 'multiport/form-data' ,
-
-        }
-      })
+      return this.http.post(this.baseUrl, file)
   }
 
 

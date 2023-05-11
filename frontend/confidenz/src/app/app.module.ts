@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterLinkActive } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
 const routes: Routes = [
@@ -36,8 +37,8 @@ const routes: Routes = [
   { path: 'notifications', component: NotificationsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'alert', component: AlertComponent }
-
+  { path: 'alert', component: AlertComponent },
+  { path: 'all-users', component: AllUsersComponent }
 
 
 
@@ -60,6 +61,7 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     AlertComponent,
+    AllUsersComponent,
   ],
   imports: [
     BrowserModule,

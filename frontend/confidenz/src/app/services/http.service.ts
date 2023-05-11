@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseUrl } from '../classes/base-url';
+import { LoginService } from './login.service';
 
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject, Observable } from 'rxjs';
@@ -17,13 +18,14 @@ import { Router } from '@angular/router';
 export class HttpService {
   baseUrl = new BaseUrl();
   userInfos:  any;
- private userSubject!: BehaviorSubject<Users | null>;
+ private userSubject!: BehaviorSubject<any | null>;
     public user: Observable<Users | null>;
   
 
   
   constructor( private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private logService: LoginService) {
 
                 this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
                 this.user = this.userSubject.asObservable();
@@ -75,6 +77,17 @@ export class HttpService {
             }
             return x;
         }));
+}
+
+delete(id: string){
+  return this.http.delete(`${environment.apiUrl}/users/${id}`)
+            .pipe(map(x => {
+                // auto logout if the logged in user deleted their own record
+                if (id == this.userValue?.id) {
+                    this.logService.logout();
+                }
+                return x;
+            }));
 }
 
 register(user: Users) {

@@ -22,11 +22,9 @@ export class DashboardComponent implements OnInit {
               private fileUpload: FileUploadService){
     this.user = this.httpService.userValue;
     console.log(this.user);
-    
   }
 
   ngOnInit(): void {
-      
   }
 
    // On file Select
@@ -37,23 +35,23 @@ export class DashboardComponent implements OnInit {
 
   // // OnClick of button Upload
  onUpload() {
-    this.loading = !this.loading;
       console.log(this.file);
       const formData = new FormData();
-      formData.append('file',this.file!)
-      this.fileUpload.upload(formData).subscribe(
-        (e: any) => {
-          if (typeof (e) === 'object') {
-            this.shortLink = e.link;
-            this.loading = false; // Flag variable
-        }
-      }
-      );
-      console.log(formData);
+      formData.append('file', this.file!)
+      console.log(this.file);
+      
+      this.fileUpload.upload(formData).toPromise()
+      .then((res) => {
+        console.log(res);
+        
+      }).catch((err) => {
+        console.log(err);
+      });
+      
       
   }
 
-
+// je veux le navigateur 
 
   
 

@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+.modal.show{
+    padding-right: 17px;
+    display: block;
+    background-color: #0000003b;
+    overflow-y: scroll;
+}
+
+.modal::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.modal::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px transparent;
+    border-radius: 5px;
+}
+  
+.modal::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(128, 128, 128, 0.425);
+}
+  
