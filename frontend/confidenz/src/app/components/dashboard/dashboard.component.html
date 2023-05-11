@@ -18,16 +18,18 @@
                   <h6 class="font-weight-normal mb-0">Vous avez<span class="text-primary"> 3 nouvelles notifications !</span></h6>
                 </div>
             <div style="margin-top: 20px;">
+              <form action="" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="formFile">Insérez un fichier ici</label>
-                <input type="file"(change)="onChange($event)" name="file" class="file-upload-default">
+                <input type="file" name="file" disabled class="file-upload-default">
                 <div class="input-group col-xs-12">
-                  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload File">
+                  <input type="file" name="file" (change)="onChange($event)" class="form-control file-upload-info" placeholder="Upload File">
                   <span class="input-group-append">
                     <button class="file-upload-browse btn btn-primary" (click)="onUpload()" type="button">Upload</button>
                   </span>
                 </div>
               </div>
+            </form>
             </div>
               </div>
             </div>

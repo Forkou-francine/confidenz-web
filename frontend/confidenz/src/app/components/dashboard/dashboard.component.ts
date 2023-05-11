@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   loading: boolean = false; // Flag variable
   file: File | null = null; // Variable to store file
 
-  constructor( private httpService: HttpService,
+  constructor( private httpService: HttpService,  
               private fileUpload: FileUploadService){
     this.user = this.httpService.userValue;
     console.log(this.user);
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
         console.log(res);
         
       }).catch((err) => {
-        console.log(err);
+        console.error(err);
       });
       
       
