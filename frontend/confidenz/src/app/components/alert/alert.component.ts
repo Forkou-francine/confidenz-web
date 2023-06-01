@@ -27,20 +27,18 @@ export class AlertComponent implements OnInit, OnDestroy{
 
             
   ngOnInit(): void {
-
     //subscribe to new alert notifications
     this.alertSubscription = this.alertService.onAlert(this.id)
     .subscribe(alert => {
         // clear alerts when an empty alert is received
         if (!alert.message) {
+
             // filter out alerts without 'keepAfterRouteChange' flag
             this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
 
-            // remove 'keepAfterRouteChange' flag on the rest
             this.alerts.forEach(x => delete x.keepAfterRouteChange);
             return;
         }
-
         // add alert to array
         this.alerts.push(alert);
 
@@ -58,9 +56,6 @@ this.routeSubscription = this.router.events.subscribe(event => {
 });
    throw new Error('Method not implemented.');
  }
-
-
-
 
 
   ngOnDestroy(){

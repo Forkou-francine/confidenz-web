@@ -1,6 +1,7 @@
 import path from "path"
 import fs from "fs"
 import UploadedFile from 'express-fileupload'
+import xlsx from 'node-xlsx';
 import mongoose from "mongoose";
 
 export default class File{
@@ -16,7 +17,7 @@ export default class File{
       
         const directory = path.dirname('public')+`/public/${_directory}/`;
         const timeStamp = Date.now().toString()
-        const filePath = `${directory}${timeStamp}_${file.name}`;
+        const filePath = `${directory}${file.name}`;
         const fileTypes = /jpeg|jpg|png|PNG|JPEG|xlsx|xls|JPG/;
 
         if (file.size > 100000000) {
@@ -54,4 +55,24 @@ export default class File{
             return { error: error }
         }
     }
+
+
+     /**
+    * remove a convert a file
+    * @param {Express.Request} req 
+    * @param {Express.Response} res 
+    * @returns Express.res
+    */
+   async convert (req, res){
+    const parse = (filename = req.file.filename) => {
+        const sheetsFromFile = xls.parse(`${__dirname}/myFile.xlsx`);
+      
+        if (sheetsFromFile.length === 0) {
+          throw new Error("Le fichier ne contient pas de données");
+          }
+          // Récupérer les données de la première feuille du fichier
+          const donnees = sheetsFromFile[0].data;
+          return donnees;
+          }
+   }
 }

@@ -67,7 +67,6 @@
 
 <!-- End Modal for note statement -->
 
-
   <!-- Modal for note statement -->
 <div class="modal fade" id="modifierModal" tabindex="-1" aria-labelledby="modifierModal" aria-hidden="true" [ngClass]="{show: this.showModal}">
   <div class="modal-dialog">
@@ -99,7 +98,7 @@
       <div class="form-group row">
         <label for="exampleInputMobile" class="col-sm-3 col-form-label">Téléphone</label>
         <div class="col-sm-9">
-          <input type="number" formControlName="telephone" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
+          <input type="tel" formControlName="telephone" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
         </div>
       </div>
       <div class="form-group row">
@@ -136,7 +135,7 @@
         <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
         Enregistrer
         </button>
-      <button routerLink="/profile"  class="btn-close" (click) ="onCloseM()"class="btn btn-light">Cancel</button>
+      <button href="profile"  class="btn-close" (click) ="onCloseM()"class="btn btn-light">Cancel</button>
     </form>
     <div *ngIf="loading" class="text-center m-5">
       <span class="spinner-border spinner-border-lg align-center"></span>

@@ -12,6 +12,8 @@
                 <div class="col-md-11 grid-margin stretch-card">
                     <div class="card position-relative">
                         <div class="card-body">
+                            <app-alert></app-alert>
+
                             <div 
                                 class="carousel slide detailed-report-carousel position-static pt-2"
                                 data-ride="carousel">
@@ -50,7 +52,7 @@
                                                                     </td>
                                                                     <td>
                                                                         <h5 class="font-weight-bold mb-0">
-                                                                            {{user?.birthday}}</h5>
+                                                                            {{user?.birthday | date:'mediumDate'}}</h5>
                                                                     </td>
                                                                 </tr>  
                                                                 <tr>

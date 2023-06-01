@@ -80,12 +80,12 @@ export class HttpService {
 }
 
 delete(id: string){
-  return this.http.delete(`${environment.apiUrl}/users/${id}`)
+  return this.http.delete(`${environment.apiUrl}/user/delete/${id}`)
             .pipe(map(x => {
                 // auto logout if the logged in user deleted their own record
-                if (id == this.userValue?.id) {
-                    this.logService.logout();
-                }
+                // if (id == this.userValue?.id) {
+                //     this.logService.logout();
+                // }
                 return x;
             }));
 }

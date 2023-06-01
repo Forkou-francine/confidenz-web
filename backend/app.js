@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express'
 import bodyParser from  'body-parser'
 import excelToJson from 'convert-excel-to-json';
+import xls from 'xlsx';
 import Database from './src/db/database.js';
 import UserRoute from './src/routes/user.js'
 import OrgRoute from './src/routes/org.js'
@@ -17,6 +18,7 @@ var corsOptions = {
   optionsSuccessStatus: 200
 }
 import path from 'path'
+import { readFileSync } from 'fs';
 
 
 
@@ -26,6 +28,42 @@ const db = new Database()
 await db.createConnection()
 
 const app = express();
+
+
+const parse = (filename) => {
+  const excelData = xls.readFile(filename);
+  return Object.keys(excelData.Sheets).map((name) => ({
+    name,
+    data: xls.utils.sheet_to_json(excelData.Sheets[name], {header: 1}),
+  }));
+}
+
+//console.log(parse("public/uploads/confidenz.xlsx"));
+
+parse("public/uploads/confidenzia.xlsx").forEach((element) => {
+  console.log(element);
+})
+
+// const jsonToObject = JSON.parse(readFileSync(, 'utf-8'));
+// console.log(jsonToObject);
+
+
+// const workbook = xls.readFile('public/uploads/confidenzina.xlsx');
+// let headers = [];
+// workbook.SheetNames.forEach((sheetName) => {
+//   const worksheet = workbook.Sheets[sheetName];
+//   const sheetHeaders = [];
+//   for (const cell in worksheet) {
+//     if (cell[0] === 'A') {
+//       const header = worksheet[cell].v;
+//       sheetHeaders.push(header);
+//     }
+//   }
+//   headers.push(sheetHeaders);
+// });
+
+// console.log(headers);
+
 app.use(cors({
   origin: ['http://localhost:4200'],
      "methods": "GET,PUT,POST",
@@ -42,19 +80,13 @@ app.use(bodyParser.json())
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use(express.static(path.join(root, 'frontend/confidenz')));
-// app.get('*', (req, res) => {
-//   res.sendFile('dist/frontend/confidenz/index.html', {root});
-// });
-
-
-
-
 
 
 //fetch data from the request  
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}));  
+
+
 
 app.use(fileUpload());
 
