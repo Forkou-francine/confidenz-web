@@ -24,7 +24,6 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
-
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

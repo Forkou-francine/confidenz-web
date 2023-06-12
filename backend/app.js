@@ -71,6 +71,14 @@ app.use(cors({
      "optionsSuccessStatus": 204,
      "responseHeader": ["Content-Type"],
 }));
+
+app.use(cors({
+  origin: ['http://localhost:8100'],
+     "methods": "GET,PUT,POST",
+     "preflightContinue": false,
+     "optionsSuccessStatus": 204,
+     "responseHeader": ["Content-Type"],
+}));
 //set the template engine  
 app.set('view engine','ejs');  
 
