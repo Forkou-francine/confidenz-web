@@ -2,13 +2,12 @@ import mongoose from 'mongoose'
 
 const fichierSchema = mongoose.Schema({
   name: { type: String, required: true },
-  description: { type: String, required: true },
-  user: { 
+  description: { type: String, required: false },
+  userId: { 
     type: mongoose.Schema.Types.ObjectId, 
     required: true,
     ref: "Utilisateur"
   },
-  type: { type: String, required: true },
   creationDate: { type: Date, required: true}
 
 });

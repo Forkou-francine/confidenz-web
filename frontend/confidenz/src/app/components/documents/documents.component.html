@@ -30,31 +30,18 @@
                     <table id="table_id" class="table table-striped">
                       <thead>
                         <tr>
-                          <th>
-                            Titre
-                          </th>
-                          <th>
-                             Derniere modification
-                          </th>
-                          <th>
-                            Auteur
-                          </th>
-                          <th>
-                            Action
-                          </th>
+                          <th scope="row"> Name </th>
+                          <th scope="row"> Description </th>
+                          <th scope="row"> Modified Date </th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td routerLink="/details" class="py-1">
-                            <i class="bi bi-file-earmark-arrow-up u--full"></i>&nbsp;<span style="font-size:16px ; ">Reglement interieur</span>
+                        <tr  *ngFor="let file of files">
+                          <td scope="row" routerLink="/details" class="py-1">
+                            <i class="bi bi-file-earmark-arrow-up u--full"></i>&nbsp;<span style="font-size:16px ; ">{{file.name}}</span>
                           </td>
-                          <td>
-                            12 Octobre 2022
-                          </td>
-                          <td>
-                            TAGNE Elohim
-                          </td>
+                          <td> {{file.description}} </td>
+                            <td> {{file.creationDate}} </td>
                           <td>
                             <div class="icon d-flex gap-lg-2 ">
                                 <div>
@@ -75,36 +62,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                            <td class="py-1">
-                              <i class="bi bi-file-earmark-arrow-up"></i>&nbsp;<span style="font-size:16px ; ">Reglement interieur</span>
-                            </td>
-                            <td>
-                              12 Octobre 2022
-                            </td>
-                            <td>
-                              TAGNE Elohim
-                            </td>
-                            <td>
-                              <div class="icon d-flex gap-lg-2 ">
-                                <div>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-icon ">
-                                      <i class="fa fa-pen-to-square"></i>                                        
-                                    </button>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-secondary btn-rounded btn-icon">
-                                        <i class="fa fa-download fa-xl"></i>
-                                    </button>
-                                </div>
-                                <div>
-                                  <button type="button" class="btn btn-danger btn-rounded btn-icon ">
-                                    <i class="fa fa-trash-can "></i>                                        
-                                  </button>
-                              </div>    
-                            </div>
-                            </td>
-                          </tr>
+                      
                       </tbody>
                     </table>
                   </div>
@@ -122,20 +80,28 @@
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="/uploadfile" enctype="multipart/form-data" class=" form-sample row justify-content-center gap-3">
+                <form action="#" method="post" class=" form-sample row justify-content-center gap-3" [formGroup]="uploadForm">
                   <div class="form-group">
+                      <label for="class" class="form-label"> Nom du fichier</label>
+                        <input type="text" class="form-control" formControlName="name" id="filename" placeholder="Liste des ...">
+                    </div>
+                    <div class="form-group">
+                      <label for="class" class="form-label"> Description</label>
+                        <textarea type="text" name="description" class="form-control" formControlName="description" id="description" placeholder="Ce fichier"></textarea>
+                    </div>
+                    <div class="form-group">
                       <label for="class" class="form-label"> Date de création</label>
-                        <input type="date" name="creationDate" class="form-control" id="dateajout" placeholder="aujourd'hui">
+                        <input type="date" class="form-control" formControlName="creationDate" id="dateajout" placeholder="aujourd'hui">
                     </div>
                     <div class="form-group">
                       <label for="formFileMultiple" class="form-label ">Choisir un fichier</label>
-                        <input class="form-control" type="file" id="formFileMultiple" multiple />
+                        <input class="form-control" (change)="onChange($event)" type="file" id="formFileMultiple" />
                       </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
-                <input type="submit" class="btn btn-primary" value="Importer">
+                <input type="submit" (click)="onUpload()" [disabled]="this.file == null || this.submitted || this.uploadForm.invalid" class="btn btn-primary" value="Importer">
               </div>
             </div>
           </div>

@@ -18,6 +18,13 @@ export default class File{
         const directory = path.dirname('public')+`/public/${_directory}/`;
         const timeStamp = Date.now().toString()
         const filePath = `${directory}${file.name}`;
+        // const files = [];
+        // const filename = file.name;
+        // files.push({
+        //     filename,
+        //     creationDate: new Date(),
+        //     user: userId  
+        // })
         const fileTypes = /jpeg|jpg|png|PNG|JPEG|xlsx|xls|JPG/;
 
         if (file.size > 100000000) {

@@ -8,7 +8,7 @@ const router = express.Router()
 
 
 router.post('/login', (req, res) => UserControler.login(req, res));
-router.get('/findFiles', (req, res) => UserControler.getUserFiles(req, res));
+router.get('/findFiles/:id', (req, res) => UserControler.getUserFiles(req, res));
 router.get('/all', (req, res) => UserControler.index(req, res));
 router.get('/findUser/:email', (req, res) => UserControler.findUser(req, res));
 router.post('/create', (req, res) => UserControler.create(req, res));

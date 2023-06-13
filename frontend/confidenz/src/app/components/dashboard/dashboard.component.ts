@@ -35,9 +35,11 @@ export class DashboardComponent implements OnInit {
 
   // // OnClick of button Upload
  onUpload() {
+      const iduser = this.httpService.userValue?.userId
       console.log(this.file);
       const formData = new FormData();
       formData.append('file', this.file!)
+      formData.append('userId', iduser)
       console.log(this.file);
       
       this.fileUpload.upload(formData).toPromise()

@@ -1,6 +1,7 @@
 import { HttpResponse } from '../helpers/helper.js';
-import { FichierModel } from '../models/index.js';
+import { FichierModel, UtilisateurModel } from '../models/index.js';
 import File from '../helpers/file.js'
+import {ObjectId} from 'mongodb'
 // import mongoose from 'mongoose';
 
         
@@ -18,13 +19,34 @@ export default class FichierController {
        try {
            let data = await FichierModel.find();
            res.status(HttpResponse.OK);
-           return res.send(data);
+           return res.send({fichier: data});
        } catch (error) {
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);
            console.log("code error ", error)
            return res.send(error);
        }
+
+       
    }
+
+   /**
+    * return all the Files of a single user
+    * @param {Express.Request} req 
+    * @param {Express.Response} res 
+    * @returns {Express.Response}
+    */
+   async fileByUser(req, res) {
+    try {
+        const id = new ObjectId(req.params.id)
+        const files = await FichierModel.findById({userId: id}).populate('Utilisateur');
+        res.status(HttpResponse.OK);
+        return res.send({files, id});
+    } catch (error) {
+        res.status(HttpResponse.INTERNAL_SERVER_ERROR);
+        console.log("code error ", error)
+        return res.send(error);
+    }
+}
 
    /**
     * insert a FichierController in the database
@@ -36,13 +58,17 @@ export default class FichierController {
 
     //console.log(req.files);
        try {
-
-    const file =  await File.saveFile(req.files.file, "uploads" );
-    //console.log(req);
-    console.log(req.files.file);
-        //    const data = await FichierModel.create(req.body);
-           res.status(HttpResponse.OK);
-           return res.send({fichier: file});
+        const userId = new ObjectId(req.body.userId);   
+        const file =  await File.saveFile(req.files.file, "uploads" );
+        const data = await FichierModel.create({
+            name: req.body.name || file.path,
+            description: req.body.description || "",
+            userId: req.body.userId || userId,
+            creationDate: new Date()
+        });
+        
+        res.status(HttpResponse.OK);
+        return res.send(data);
        } catch (error) {
         console.log(error);
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);
@@ -78,23 +104,6 @@ export default class FichierController {
        }
    }
 
-
-    /**
-    * get a single FichierController in the database
-    * @param {Express.Request} req 
-    * @param {Express.Response} res 
-    * @returns Express.res
-    */
-   async findUserByFiles( req, res) {
-    try {
-        const data = FichierModel.find().populate('userId')
-        .then( p=> console.log(p))
-        .catch(error => console.log(error));
-    } catch (error) {
-        res.status(HttpResponse.INTERNAL_SERVER_ERROR);
-        return res.send({ error });
-    }
-   }
 
    /**
     * update a FichierController

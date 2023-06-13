@@ -1,4 +1,5 @@
 export class File {
     name?: String;
-    size?: String;
+    createdDate?: String;
+    description?: string;
 }

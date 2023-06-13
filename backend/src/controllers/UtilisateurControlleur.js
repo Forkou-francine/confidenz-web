@@ -111,7 +111,7 @@ export default class UtilisateurControler{
     async getUserFiles(req, res) {
         try {
             UtilisateurModel.findOne({_id: req.body.ObjectId})
-                .populate('fichiers')
+                .populate('files')
                 .then( user => {
                     res.json(user);
                     console.log(user);

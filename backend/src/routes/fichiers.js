@@ -11,6 +11,7 @@ router.post('/save', (req, res) => FicControler.save(req, res));
 router.post('/edit/id',  (req, res) => FicControler.update(req, res));
 router.post('/delete/:id', (req, res) => FicControler.remove(req, res));
 router.get('/find/:id', (req, res) => FicControler.findFile(req, res));
+router.get('/user/:id', (req, res) => FicControler.fileByUser(req, res));
 
 
 

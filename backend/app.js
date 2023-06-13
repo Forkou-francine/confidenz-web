@@ -40,9 +40,9 @@ const parse = (filename) => {
 
 //console.log(parse("public/uploads/confidenz.xlsx"));
 
-parse("public/uploads/confidenzia.xlsx").forEach((element) => {
-  console.log(element);
-})
+// parse("public/uploads/confidenzia.xlsx").forEach((element) => {
+//   console.log(element);
+// })
 
 // const jsonToObject = JSON.parse(readFileSync(, 'utf-8'));
 // console.log(jsonToObject);
