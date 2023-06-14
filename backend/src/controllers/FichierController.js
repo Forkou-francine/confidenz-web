@@ -38,9 +38,8 @@ export default class FichierController {
    async fileByUser(req, res) {
     try {
         const id = new ObjectId(req.params.id)
-        const files = await FichierModel.findById({userId: id}).populate('Utilisateur');
-        res.status(HttpResponse.OK);
-        return res.send({files, id});
+        const files = await FichierModel.find({userId: id});
+        return res.status(HttpResponse.OK).send({files, id});
     } catch (error) {
         res.status(HttpResponse.INTERNAL_SERVER_ERROR);
         console.log("code error ", error)

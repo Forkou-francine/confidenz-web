@@ -33,6 +33,7 @@
                           <th scope="row"> Name </th>
                           <th scope="row"> Description </th>
                           <th scope="row"> Modified Date </th>
+                          <th scope="row"> Actions </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -41,11 +42,11 @@
                             <i class="bi bi-file-earmark-arrow-up u--full"></i>&nbsp;<span style="font-size:16px ; ">{{file.name}}</span>
                           </td>
                           <td> {{file.description}} </td>
-                            <td> {{file.creationDate}} </td>
+                          <td> {{file.creationDate | date:'mediumDate'}} </td>
                           <td>
                             <div class="icon d-flex gap-lg-2 ">
                                 <div>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-icon ">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-icon">
                                       <i class="fa fa-pen-to-square"></i>                                        
                                     </button>
                                 </div>
@@ -62,7 +63,6 @@
                             </div>
                           </td>
                         </tr>
-                      
                       </tbody>
                     </table>
                   </div>

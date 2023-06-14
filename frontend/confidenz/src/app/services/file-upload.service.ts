@@ -25,7 +25,11 @@ export class FileUploadService {
   }
 
   getAll(){
-    return this.http.get<File[]>(this.baseurl + "file/all/")
+    return this.http.get(this.baseurl.url + "file/all/")
+  }
+
+  getFilesByUser(id: string){
+    return this.http.get(this.baseurl.url + "file/user/" +id);
   }
 
 

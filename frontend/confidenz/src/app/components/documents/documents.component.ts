@@ -37,8 +37,11 @@ export class DocumentsComponent {
     ngOnInit() {
       this.fileUpload.getAll()
     .pipe(first())
-    .subscribe( (filess: any) => 
-     this.files = filess.files)
+    .subscribe( (files: any) => {
+      this.files = files['fichier']
+      console.log("Files received", this.files);
+    }
+     )
      console.log("Les fichiers sont ici",this.files, this.files?.entries);
       
       

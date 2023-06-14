@@ -1,5 +1,5 @@
 export class File {
-    name?: String;
-    createdDate?: String;
+    name?: string;
+    createdDate?: string;
     description?: string;
 }
