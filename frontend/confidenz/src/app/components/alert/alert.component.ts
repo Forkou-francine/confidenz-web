@@ -54,7 +54,6 @@ this.routeSubscription = this.router.events.subscribe(event => {
         this.alertService.clear(this.id);
     }
 });
-   throw new Error('Method not implemented.');
  }
 
 
@@ -62,7 +61,6 @@ this.routeSubscription = this.router.events.subscribe(event => {
     this.alertSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
 
-    throw new Error('Method not implemented.');
   }
 
 

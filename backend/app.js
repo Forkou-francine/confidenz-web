@@ -38,8 +38,6 @@ const parse = (filename) => {
   }));
 }
 
-//console.log(parse("public/uploads/confidenz.xlsx"));
-
 // parse("public/uploads/confidenzia.xlsx").forEach((element) => {
 //   console.log(element);
 // })
@@ -48,21 +46,19 @@ const parse = (filename) => {
 // console.log(jsonToObject);
 
 
-// const workbook = xls.readFile('public/uploads/confidenzina.xlsx');
-// let headers = [];
-// workbook.SheetNames.forEach((sheetName) => {
-//   const worksheet = workbook.Sheets[sheetName];
-//   const sheetHeaders = [];
-//   for (const cell in worksheet) {
-//     if (cell[0] === 'A') {
-//       const header = worksheet[cell].v;
-//       sheetHeaders.push(header);
-//     }
-//   }
-//   headers.push(sheetHeaders);
-// });
+const workbook = xls.readFile('public/uploads/confidenzina.xlsx');
+const sheetName = workbook.SheetNames[0];
+const worksheet = workbook.Sheets[sheetName];
 
-// console.log(headers);
+const headers = [];
+for (let cell in worksheet) {
+if (cell[0] === 'A') {
+headers.push(worksheet[cell].v);
+}
+}
+
+console.log(headers);
+
 
 app.use(cors({
   origin: ['http://localhost:4200'],

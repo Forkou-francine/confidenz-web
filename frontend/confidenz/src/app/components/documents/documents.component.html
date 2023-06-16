@@ -46,17 +46,12 @@
                           <td>
                             <div class="icon d-flex gap-lg-2 ">
                                 <div>
-                                    <button type="button" class="btn btn-primary btn-rounded btn-icon">
-                                      <i class="fa fa-pen-to-square"></i>                                        
+                                    <button type="button" (click)="onEdit(file._id)" class="btn btn-primary btn-rounded btn-icon">
+                                      <i class="fa fa-eye"></i>                                        
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-secondary btn-rounded btn-icon">
-                                        <i class="fa fa-download"></i>
-                                    </button>
-                                </div>
-                                <div>
-                                  <button type="button" class="btn btn-danger btn-rounded btn-icon ">
+                                  <button type="button" (click)="onDelete(file._id)" class="btn btn-danger btn-rounded btn-icon ">
                                     <i class="fa fa-trash-can "></i>                                        
                                   </button>
                               </div>    

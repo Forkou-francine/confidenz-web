@@ -15,6 +15,8 @@ export class FileUploadService {
 
   private baseUrl= "http://localhost:3000/file/save/";
   baseurl = new BaseUrl();
+  private apiUrl = 'http://localhost:3000/headers';
+
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +34,23 @@ export class FileUploadService {
     return this.http.get(this.baseurl.url + "file/user/" +id);
   }
 
+  deleteFile(id: string){
+    return this.http.delete(this.baseurl.url + "file/"+ id, this.baseurl.httpOptions);
+  }
+
+  updateFile(id: string){
+    return this.http.put(this.baseurl.url + "file/edit/"+ id, this.baseurl.httpOptions);
+  }
+
+  getFile(id: string){
+    return this.http.get(this.baseurl.url + "file/" +id, this.baseurl.httpOptions)
+  }
 
 
+  getHeaders() {
+    return this.http.get(this.apiUrl);
+    }
+    
 
 
 

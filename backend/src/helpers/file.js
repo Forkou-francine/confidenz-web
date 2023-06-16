@@ -18,13 +18,6 @@ export default class File{
         const directory = path.dirname('public')+`/public/${_directory}/`;
         const timeStamp = Date.now().toString()
         const filePath = `${directory}${file.name}`;
-        // const files = [];
-        // const filename = file.name;
-        // files.push({
-        //     filename,
-        //     creationDate: new Date(),
-        //     user: userId  
-        // })
         const fileTypes = /jpeg|jpg|png|PNG|JPEG|xlsx|xls|JPG/;
 
         if (file.size > 100000000) {
@@ -46,6 +39,43 @@ export default class File{
             return { error }
         }
     }
+
+
+
+    /** 
+     * save the file in a specifique directory
+     * @param {UploadedFile} file
+     * @param {String} _path 
+     */
+
+    static async downloadFile(file, _directory) {
+      
+        const directory = path.dirname('public')+`/public/${_directory}/`;
+        const timeStamp = Date.now().toString()
+        const filePath = `${directory}${file.name}`;
+        const fileTypes = /jpeg|jpg|png|PNG|JPEG|xlsx|xls|JPG/;
+
+        if (file.size > 100000000) {
+            return { error: 'le fichier est trop grand.' }
+        }
+        if (!fileTypes.test(path.extname(file.name))) {
+            return { error: "le format de fichier n'est pas supporte." }
+        }
+
+        try {
+            if (!fs.existsSync(directory)) {
+                fs.mkdirSync(directory)
+            }
+            await file.mv(filePath);
+
+            return { path: `/${_directory}/${file.name}` }
+
+        } catch (error) {
+            return { error }
+        }
+    }
+
+
 
     /** 
      * drop a specific the file

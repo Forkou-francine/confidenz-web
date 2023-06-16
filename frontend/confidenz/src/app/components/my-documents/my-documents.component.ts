@@ -32,11 +32,23 @@ export class MyDocumentsComponent implements OnInit {
     )
   }
 
-  onDelete(){}
+  onDelete(fileId: string){
+    this.fileUpload.deleteFile(fileId)
+    .pipe(first())
+    .subscribe( (files: any) => {
+      this.files = files['fichier']
+      console.log("Files received", this.files);
+    }
+     );
+  }
+  onChange(fileId: string){
+    this.fileUpload.updateFile(fileId)
+    .pipe(first())
+    .subscribe((files: any) => {
+      this.files = files['fiechier']
+    })
+  }
 
-  onChange(){}
-
-  onDownload(){}
 
  
 

@@ -68,6 +68,34 @@ export default class OrganisationController {
        }
    }
 
+
+
+     /**
+    * get a single OrganisationController in the database
+    * @param {Express.Request} req 
+    * @param {Express.Response} res 
+    * @returns Express.res
+    */
+     async addUserToOrg(req, res) {
+        try {
+            const addOrgToUser = function(userId, organisaion) {
+                return db.OrganisationModel.findByIdAndUpdate(
+                  userId,
+                  { $push: { tags: organisaion._id } },
+                  { new: true, useFindAndModify: false }
+                );
+              };
+        } catch (error) {
+            if (error.name == 'CastError') {
+                res.status(HttpResponse.BAD_REQUEST);
+            } else {
+                res.status(HttpResponse.INTERNAL_SERVER_ERROR);
+            }
+            return res.send({ message: error.message });
+        }
+    }
+
+
    /**
     * update a OrganisationController
     * @param {Express.Request} req 
@@ -98,13 +126,13 @@ export default class OrganisationController {
     * @returns Express.res
     */
    async remove(req, res) {
-       let data = await OrganisationModel.findOne({ _id: req.params.id });
+       const data = await OrganisationModel.findOne({ _id: req.params.id });
        if (data == null) {
            res.status(HttpResponse.NOT_FOUND);
            return res.send({ message: `${req.params.id} does not corresponde to any data` })
        }
        try {
-           await OrganisationModel.remove({ _id: req.params.id });
+           await OrganisationModel.deleteOne({ _id: req.params.id });
            res.status(HttpResponse.OK);
            return res.send({ message: 'one ow removed' });
        } catch (error) {

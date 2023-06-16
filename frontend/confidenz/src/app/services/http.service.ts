@@ -91,6 +91,6 @@ delete(id: string){
 }
 
 register(user: Users) {
-  return this.http.post(`${environment.apiUrl}/user/register`, user);
+  return this.http.post(`${environment.apiUrl}/user/create`, user);
 }
 }

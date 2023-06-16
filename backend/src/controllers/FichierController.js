@@ -2,7 +2,7 @@ import { HttpResponse } from '../helpers/helper.js';
 import { FichierModel, UtilisateurModel } from '../models/index.js';
 import File from '../helpers/file.js'
 import {ObjectId} from 'mongodb'
-// import mongoose from 'mongoose';
+import xls from 'xlsx';
 
         
 export default class FichierController {
@@ -85,13 +85,13 @@ export default class FichierController {
     */
    async findFile(req, res) {
        try {
-           const data = await FichierController.findOne({ _id: req.params.id });
-           if (data != null) {
+           const data = await FichierModel.findOne({ _id: req.params.id });
+           if (data) {
                res.status(HttpResponse.OK);
                return res.send({ data: data });
            } else {
                res.status(HttpResponse.NOT_FOUND);
-               return res.send({ message: `${req.params.id} does not corresponde to any FichierController` })
+               return res.send({ message: `${req.params.id} does not corresponde to any File` })
            }
        } catch (error) {
            if (error.name == 'CastError') {
@@ -113,7 +113,7 @@ export default class FichierController {
    async update(req, res) {
 
        try {
-           let data = await FichierModel.updateOne({ _id: req.params.id }, req.body);
+           const data = await FichierModel.updateOne({ _id: req.params.id }, req.body);
            if (data.modifiedCount == 1 || data.matchedCount == 1) {
                res.status(HttpResponse.OK);
                return res.send({ message: "data modifier avec success!" });
@@ -127,6 +127,30 @@ export default class FichierController {
        }
    }
 
+   
+   /**
+    * get a single FichierController in the database
+    * @param {Express.Request} req 
+    * @param {Express.Response} res 
+    * @returns Express.res
+    */
+   async getInfos(){
+    // const workbook = xls.readFile('/uploads/confidenzia.xlsx');
+    const sheetName = workbook.SheetNames[0];
+    // console.log("Helloooo", workbook);
+    // console.log("Hiiiii", sheetName);
+    const worksheet = workbook.Sheets[sheetName];
+
+    const headers = [];
+        for (let cell in worksheet) {
+        if (cell[0] === 'A') {
+        headers.push(worksheet[cell].v);
+        }
+    }
+
+    // console.log("Je les vois en chelouuuu", headers);
+   }
+
    /**
     * remove a FichierController
     * @param {Express.Request} req 
@@ -134,16 +158,17 @@ export default class FichierController {
     * @returns Express.res
     */
    async remove(req, res) {
-       let data = await FichierModel.findOne({ _id: req.params.id });
-       if (data == null) {
-           res.status(HttpResponse.NOT_FOUND);
-           return res.send({ message: `${req.params.id} does not corresponde to any data` })
+        console.log("File ID: ", req.params.id);
+       const data = await FichierModel.findOne({ _id: req.params.id });
+       if (!data) {
+           return res.status(HttpResponse.NOT_FOUND).send({ message: `${req.params.id} does not corresponde to any data` })
        }
        try {
-           await FichierModel.remove({ _id: req.params.id });
+           await FichierModel.deleteOne({ _id: req.params.id });
            res.status(HttpResponse.OK);
-           return res.send({ message: 'one ow removed' });
+           return res.send({ message: 'one row removed' });
        } catch (error) {
+        console.log("File Remove Error", error);
            res.status(HttpResponse.INTERNAL_SERVER_ERROR);
            return res.send({ error });
        }

@@ -17,6 +17,7 @@ export class ModalComponent implements OnInit{
 
   id?:string;
   modificationForm!: FormGroup;
+  registrationForm!: FormGroup;
   loading = false;
   submitting = false;
   submitted = false;
@@ -40,6 +41,14 @@ export class ModalComponent implements OnInit{
     this.id = this.route.snapshot.params['id'];
 
     this.modificationForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      password: ['', Validators.required],
+      telephone:['', Validators.required],
+      email: ['', Validators.required]
+    });
+
+    this.registrationForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       password: ['', Validators.required],
@@ -83,7 +92,7 @@ export class ModalComponent implements OnInit{
       .then((data) => {
         this.showModal = false;
         this.submitting = false;
-        this.alertService.success('User saved', { keepAfterRouteChange: true });
+        this.alertService.success('User updated', { keepAfterRouteChange: true });
         console.log(data);
         
         //this.router.navigateByUrl('/profile');
@@ -92,6 +101,33 @@ export class ModalComponent implements OnInit{
         this.submitting = false;
       })
   }
+
+  
+  onRegister() {
+    this.submitted = true;
+
+    // reset alerts on submit
+  this.alertService.clear();
+
+    // stop here if form is invalid
+    if (this.registrationForm.invalid) {
+        return;
+    }
+
+    this.submitting = true;
+    this.saveUser().toPromise()
+    .then((data) => {
+      this.showModal = false;
+      this.submitting = false;
+      this.alertService.success('User saved', { keepAfterRouteChange: true });
+      console.log(data);
+      
+      this.router.navigateByUrl('/all-users');
+    }).catch((er) => {
+      this.alertService.error(er);
+      this.submitting = false;
+    })
+}
 
   private saveUser() {
     this.iduser = this.httpService.userValue?.userId

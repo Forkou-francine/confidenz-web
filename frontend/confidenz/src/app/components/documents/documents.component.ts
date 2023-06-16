@@ -14,12 +14,12 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 })
 export class DocumentsComponent {
 
-  id?:string;
+  id!:string;
   uploadForm!: FormGroup;
   loading = false;
   submitting = false;
   submitted = false;
-  files?: any[] ;
+  files!: any[] ;
   file: File | null = null; // Variable to store file
 
 
@@ -36,13 +36,12 @@ export class DocumentsComponent {
 
     ngOnInit() {
       this.fileUpload.getAll()
-    .pipe(first())
+      .pipe(first())
     .subscribe( (files: any) => {
       this.files = files['fichier']
       console.log("Files received", this.files);
     }
-     )
-     console.log("Les fichiers sont ici",this.files, this.files?.entries);
+     );
       
       
       this.id = this.route.snapshot.params['id'];
@@ -92,16 +91,33 @@ export class DocumentsComponent {
   
     private saveUser() {
       this.iduser = this.httpService.userValue?.userId
-  
         // create or update user based on id param
-        return  this.httpService.update(this.iduser!, this.uploadForm.value);
-           
+        return  this.httpService.update(this.iduser!, this.uploadForm.value);      
     }
 
     // On file Select
     onChange(e: Event): void {
       const target = e.target as HTMLInputElement
       this.file = target!.files![0];
+  }
+
+  onDelete(fileId: string){
+    this.fileUpload.deleteFile(fileId)
+    .pipe(first())
+    .subscribe( (files: any) => {
+      this.files = files['fichier']
+      console.log("Files received", this.files);
+    }
+     );
+  }
+
+  onEdit(fileId: string){
+    this.fileUpload.getFile(fileId)
+    .pipe(first())
+    .subscribe((files: any) => {
+      this.files = files['fichier']
+      this.router.navigate(['/details'])
+    })
   }
 
     onUpload() {
